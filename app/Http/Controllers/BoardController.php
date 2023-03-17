@@ -19,6 +19,10 @@ class BoardController extends Controller
         return view('boards.index', compact('boards'));
     }
 
+    public function create() {
+        return view('boards.create');
+    }
+
     public function store(Request $request) {
 
         $request = $request->validate([
@@ -35,10 +39,6 @@ class BoardController extends Controller
         return redirect()->route('board.index');
     }
 
-    public function create() {
-        return view('boards.create');
-    }
-
     public function show(Board $board) {
         return view('boards.detail', compact('board'));
     }
@@ -52,7 +52,11 @@ class BoardController extends Controller
             'board_title' => 'required',
             'board_content' => 'required'
         ]);
-        $board->update($request);
+        $board->update([
+            'board_title' => $request['board_title'],
+            'board_content' => $request['board_content'],
+            'updated_at' => now()
+        ]);
         return redirect()->route('board.index');
     }
 
