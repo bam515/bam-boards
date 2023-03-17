@@ -3,7 +3,7 @@
 @section('content')
     <h2 class="mt-4 mb-3">라라벨 게시판</h2>
 
-    <a href=""><button type="button" class="btn btn-dark" style="float: right;">글 작성</button></a>
+    <a href="{{ route('board.create') }}"><button type="button" class="btn btn-dark" style="float: right;">글 작성</button></a>
 
     <table class="table table-striped table-hover">
         <colgroup>
@@ -20,18 +20,19 @@
             <th scope="col"></th>
         </tr>
         </thead>
-        <tbody>
+        <tbody class="table-group-divider">
         @php
             $no = $boards->total() - (($boards->currentPage() - 1) * $boards->perPage());
         @endphp
         @foreach($boards as $key => $board)
             <tr>
-                <td>{{ $no-- }}</td>
-                <td>{{ $board->board_title }}</td>
-                <td>{{ $board->created_at }}</td>
-                <td>
-                    <button type="button" onclick="location.href='{{ route('board.edit', $board) }}'">수정</button>
-                    <button type="button" onclick="location.href='{{ route('board.delete', $board) }}'">삭제</button>
+                <th scope="row" class="align-middle">{{ $no-- }}</th>
+                <td class="align-middle"><a href="{{ route('board.show', $board) }}">{{ $board->board_title }}</a></td>
+                <td class="align-middle">{{ $board->created_at }}</td>
+                <td class="align-middle">
+                    <button type="button" class="btn btn-dark" onclick="location.href='{{ route('board.edit', $board) }}'">수정</button>
+                    <form action="{{ route('board.delete', $board->board_id) }}" method="post"></form>
+                    <button type="button" class="btn btn-danger" onclick="location.href='{{ route('board.delete', $board) }}'">삭제</button>
                 </td>
             </tr>
         @endforeach

@@ -3,15 +3,13 @@
 @section('content')
     <h2 class="mt-4 mb-3">게시글 작성</h2>
 
-    @if($errors->any())
-        <div class="alert alert-warning" role="alert">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    <script>
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+                alert('{{ $error }}');
+            @endforeach
+        @endif
+    </script>
 
     <form action="{{ route('board.store') }}" method="post">
         @csrf
@@ -21,7 +19,7 @@
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">내용</label>
-            <textarea rows="10" cols="40" name="board_content" class="form-control" id="content"></textarea>
+            <textarea rows="10" cols="40" style="resize: none;" name="board_content" class="form-control" id="content"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">저장</button>
     </form>

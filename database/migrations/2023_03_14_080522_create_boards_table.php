@@ -17,8 +17,8 @@ class CreateBoardsTable extends Migration
             $table->id('board_id'); // 해당 테이블의 Pirmary Key를 bigIncrements(auto-incrementing big integer) 타입으로 생성
             $table->string('board_title', 255); // boardTitle라는 이름의 컬럼을 varchar(255) 타입으로 생성
             $table->longText('board_content'); // boardContent라는 이름의 컬럼을 longtext 타입으로 생성
-            $table->timestamp('created_at'); // createdAt라는 이름의 컬럼을 timestamp 타입으로 생성
-            $table->timestamp('updated_at'); // updatedAt라는 이름의 컬럼을 timestamp 타입으로 생성
+            $table->timestamp('created_at')->default(now()); // createdAt라는 이름의 컬럼을 timestamp 타입으로 생성
+            $table->timestamp('updated_at')->nullable(); // updatedAt라는 이름의 컬럼을 timestamp 타입으로 생성
         });
     }
 

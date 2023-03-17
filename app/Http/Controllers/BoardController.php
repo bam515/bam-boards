@@ -24,9 +24,18 @@ class BoardController extends Controller
             'board_title' => 'required',
             'board_content' => 'required'
         ]);
-        $this->board->create($request);
+        $this->board->create([
+            'board_title' => $request['board_title'],
+            'board_content' => $request['board_content'],
+            'created_at' => now(),
+            'updated_at' => null
+        ]);
 
         return redirect()->route('board.index');
+    }
+
+    public function create() {
+        return view('boards.create');
     }
 
     public function show(Board $board) {
@@ -43,10 +52,11 @@ class BoardController extends Controller
             'board_content' => 'required'
         ]);
         $board->update($request);
-        return redirect()->route('board.index', $board);
+        return redirect()->route('board.index');
     }
 
-    public function delete(Board $board) {
-
+    public function destroy(Board $board) {
+        $board->delete();
+        return redirect()->route('board.index');
     }
 }

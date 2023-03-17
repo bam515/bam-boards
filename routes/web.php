@@ -9,9 +9,9 @@ Route::get('/', function () {
 
 Route::get('/boards', [BoardController::class, 'index'])->name('board.index');
 
-Route::get('/boards/{board}', [BoardController::class, 'show'])->name('board.show');
+Route::get('/boards/{board}', [BoardController::class, 'show'])->where('board', '[0-9]+')->name('board.show');
 
-Route::view('/boards/create', 'boards.create')->name('board.create');
+Route::get('/boards/create', [BoardController::class, 'create'])->name('board.create');
 
 Route::post('/boards', [BoardController::class, 'store'])->name('board.store');
 
