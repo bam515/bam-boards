@@ -20,12 +20,44 @@ class BoardController extends Controller
     }
 
     public function store(Request $request) {
-//        $request->validate([
-//            ''
-//        ]);
+
+        $request = $request->validate([
+            'board_title' => 'required',
+            'board_content' => 'required'
+        ]);
+        $this->board->create([
+            'board_title' => $request['board_title'],
+            'board_content' => $request['board_content'],
+            'created_at' => now(),
+            'updated_at' => null
+        ]);
+
+        return redirect()->route('board.index');
+    }
+
+    public function create() {
+        return view('boards.create');
     }
 
     public function show(Board $board) {
         return view('boards.detail', compact('board'));
+    }
+
+    public function edit(Board $board) {
+        return view('boards.edit', compact('board'));
+    }
+
+    public function update(Board $board, Request $request) {
+        $request = $request->validate([
+            'board_title' => 'required',
+            'board_content' => 'required'
+        ]);
+        $board->update($request);
+        return redirect()->route('board.index');
+    }
+
+    public function destroy(Board $board) {
+        $board->delete();
+        return redirect()->route('board.index');
     }
 }
