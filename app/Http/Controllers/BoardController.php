@@ -20,6 +20,7 @@ class BoardController extends Controller
     }
 
     public function store(Request $request) {
+
         $request = $request->validate([
             'board_title' => 'required',
             'board_content' => 'required'
