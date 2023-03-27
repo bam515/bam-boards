@@ -1,0 +1,126 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "게시판",
+        "description": "게시판 프로젝트",
+        "contact": {
+            "name": "임승범",
+            "email": "devbam515@gmail.com"
+        },
+        "version": "0.1"
+    },
+    "paths": {
+        "/boards": {
+            "post": {
+                "tags": [
+                    "게시판"
+                ],
+                "summary": "게시글 등록",
+                "description": "게시글을 등록",
+                "operationId": "e1f8712c406dca13de55015c113ad641",
+                "requestBody": {
+                    "description": "게시글 정보",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "board_title": {
+                                        "description": "게시글 제목",
+                                        "type": "string",
+                                        "example": "공지사항입니다."
+                                    },
+                                    "board_content": {
+                                        "description": "게시글 내용",
+                                        "type": "string",
+                                        "example": "공지사항 내용입니다."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Fail"
+                    }
+                }
+            }
+        },
+        "/boards/{board_id}": {
+            "put": {
+                "tags": [
+                    "게시판"
+                ],
+                "summary": "게시글 수정",
+                "description": "게시글을 수정",
+                "operationId": "4bc4f8be0d5d2623e77063eb2314b133",
+                "parameters": [
+                    {
+                        "name": "board_id",
+                        "in": "path",
+                        "description": "게시글 PK"
+                    }
+                ],
+                "requestBody": {
+                    "description": "게시글 정보",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "board_title": {
+                                        "description": "게시글 제목",
+                                        "type": "string",
+                                        "example": "공지사항입니다."
+                                    },
+                                    "board_content": {
+                                        "description": "게시글 내용",
+                                        "type": "string",
+                                        "example": "공지사항 내용입니다."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Fail"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "게시판"
+                ],
+                "summary": "게시글 삭제",
+                "description": "게시글을 삭제",
+                "operationId": "d00ba5237d369695bd2be3ed95c8b33a",
+                "parameters": [
+                    {
+                        "name": "board_id",
+                        "in": "path",
+                        "description": "게시글 PK"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Fail"
+                    }
+                }
+            }
+        }
+    }
+}
