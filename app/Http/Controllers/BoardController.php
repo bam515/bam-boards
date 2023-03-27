@@ -36,7 +36,9 @@ class BoardController extends Controller
      *             mediaType="application/json",
      *             @OA\Schema (
      *                 @OA\Property (property="board_title", type="string", description="게시글 제목", example="공지사항입니다."),
-     *                 @OA\Property (property="board_content", type="string", description="게시글 내용", example="공지사항 내용입니다.")
+     *                 @OA\Property (
+     *                     property="board_content", type="string", description="게시글 내용", example="공지사항 내용입니다."
+     *                 )
      *             )
      *         )
      *     ),
@@ -82,7 +84,9 @@ class BoardController extends Controller
      *             mediaType="application/json",
      *             @OA\Schema (
      *                 @OA\Property (property="board_title", type="string", description="게시글 제목", example="공지사항입니다."),
-     *                 @OA\Property (property="board_content", type="string", description="게시글 내용", example="공지사항 내용입니다.")
+     *                 @OA\Property (
+     *                     property="board_content", type="string", description="게시글 내용", example="공지사항 내용입니다."
+     *                 )
      *             )
      *         )
      *     ),
